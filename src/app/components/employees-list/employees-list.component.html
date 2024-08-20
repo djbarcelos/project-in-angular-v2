@@ -1,0 +1,34 @@
+<div id="employeesList">
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Contratação</th>
+        <th>Função</th>
+        <th>Salário</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees" [ngClass]="{'selected': selectedEmployee === employee}"
+        (click)="selectRow(employee)">
+        <td data-label="Nome">{{employee.name}}</td>
+        <td data-label="CPF">{{employee.cpf}}</td>
+        <td data-label="Contratação">{{employee.hireDate}}</td>
+        <td data-label="Função">{{employee.workFunction}}</td>
+        <td data-label="Salário"> {{employee.salary}} </td>
+        <td>
+          <div id="button-container" *ngIf="selectedEmployee === employee">
+            <button (click)="handleEdit(employee)">
+              <i class="fas fa-edit" fa-lg></i>
+            </button>
+            <button (click)="handleRemove(employee.id)">
+              <i class="fas fa-trash-alt" fa-2x></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

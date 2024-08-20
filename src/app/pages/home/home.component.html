@@ -1,0 +1,13 @@
+<main id="container">
+  <header>
+    <button class="add" (click)="handleAdd()">
+      <i class="fas fa-plus"></i> <span>Adicionar</span>
+    </button>
+    <!-- <app-employee-form *ngIf="isModalOpen" (close)="closeModal()"></app-employee-form> -->
+  </header>
+
+  <h1>Lista de colaboradores</h1>
+
+  <app-employees-list></app-employees-list>
+
+</main>
