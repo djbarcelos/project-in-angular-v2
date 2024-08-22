@@ -1,0 +1,14 @@
+<div class="custom-select" (click)="toggleDropdown($event)">
+  <div class="select-box">
+    <span *ngIf="selectedOptions.length === 0">Selecione as opções</span>
+    <span *ngIf="selectedOptions.length > 0" class="selected-text">
+      {{ selectedOptions.length }} opção(s) selecionada(s)
+    </span>
+  </div>
+  <div class="options-list" *ngIf="dropdownOpen">
+    <label *ngFor="let option of options" class="custom-option">
+      <input type="checkbox" [checked]="isSelected(option.id)" (change)="onOptionChange(option.id, $event)">
+      <span class="option-text">{{ option.value }}</span>
+    </label>
+  </div>
+</div>

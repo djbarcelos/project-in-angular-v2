@@ -1,0 +1,53 @@
+<app-notification [message]="message" [type]="type" [visible]="notificationVisible"></app-notification>
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+
+  <div class="form-group">
+    <label>Nome</label>
+    <input type="text" id="name" [(ngModel)]="name" name="name" required placeholder="Nome">
+  </div>
+
+  <div class="form-group">
+    <label>CPF</label>
+    <input type="text" id="cpf" [(ngModel)]="cpf" name="cpf" required placeholder="000.000.000-00"
+      [textMask]="{mask: cpfMask}">
+  </div>
+
+  <div class="form-group">
+    <label>Data de Contratação</label>
+    <div class="custom-date-container">
+      <input type="text" id="hireDate" [(ngModel)]="hireDate" name="hireDate" required placeholder="DD/MM/YYYY"
+        [textMask]="{mask: dateMask}" (input)="onInputDate()">
+      <span class="custom-date-icon">📅</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Função</label>
+    <input type="text" id="workFunction" [(ngModel)]="workFunction" name="workFunction" required placeholder="Função">
+  </div>
+
+  <div class="form-group">
+    <label>Salário</label>
+    <input type="text" id="salary" [(ngModel)]="salary" name="salary" required (blur)="onBlurSalary()"
+      placeholder="R$ 0,00">
+  </div>
+
+  <div class="form-group">
+    <label>Líder</label>
+    <select id="options" name="options" class="custom-select" [(ngModel)]="managerId">
+      <option value="null" disabled selected>Selecione uma opção</option>
+      <option *ngFor="let element of allEmployees" [value]="element.id">
+        {{ element.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label>Liderados</label>
+    <app-multi-select (selectionChange)="onSelectionChange($event)" [options]="options"
+      [selectedItems]="selectedItems"></app-multi-select>
+  </div>
+
+
+  <button type="submit" class="submit-button">Salvar</button>
+</form>

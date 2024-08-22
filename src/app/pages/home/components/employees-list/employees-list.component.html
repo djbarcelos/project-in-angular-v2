@@ -1,6 +1,5 @@
 <div id="employeesList">
-
-  <table>
+  <table *ngIf="employeeList.length > 0">
     <thead>
       <tr>
         <th>Nome</th>
@@ -11,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let employee of employees" [ngClass]="{'selected': selectedEmployee === employee}"
+      <tr *ngFor="let employee of employeeList" [ngClass]="{'selected': selectedEmployee === employee}"
         (click)="selectRow(employee)">
         <td data-label="Nome">{{employee.name}}</td>
         <td data-label="CPF">{{employee.cpf}}</td>
@@ -20,10 +19,10 @@
         <td data-label="Salário"> {{employee.salary}} </td>
         <td>
           <div id="button-container" *ngIf="selectedEmployee === employee">
-            <button (click)="handleEdit(employee)">
+            <button (click)="openModal()">
               <i class="fas fa-edit" fa-lg></i>
             </button>
-            <button (click)="handleRemove(employee.id)">
+            <button (click)="alertConfirm()">
               <i class="fas fa-trash-alt" fa-2x></i>
             </button>
           </div>
@@ -31,4 +30,15 @@
       </tr>
     </tbody>
   </table>
+  <div id="empty-list" *ngIf="employeeList.length == 0">
+    <i class="fas fa-clipboard-list" fa-2x></i>
+    <p> Você ainda não tem colaboradores cadastrados </p>
+  </div>
 </div>
+
+<app-modal *ngIf="isModalOpen" (close)="closeModal()" [title]="'Editar Colaborador'" [employee]="selectedEmployee"
+  (update)="updateEmployeeList()" (successNotification)="_successNotification()"></app-modal>
+
+<app-confirm [message]="'Você tem certeza que deseja remover este item?'" [visible]="confirmVisible"
+  (confirmed)="onConfirm()" (cancelled)="onCancel()">
+</app-confirm>

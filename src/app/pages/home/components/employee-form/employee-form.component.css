@@ -1,0 +1,80 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: var(--gray-100);
+}
+
+input,
+select {
+    padding: 10px;
+    border: 1px solid var(--gray-500);
+    border-radius: 4px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--gray-700);
+    color: var(--gray-100);
+}
+
+.custom-date-container {
+    position: relative;
+    width: 100%;
+}
+
+.custom-date-input {
+    padding: 10px 40px 10px 10px;
+    border: 1px solid var(--gray-500);
+    border-radius: 4px;
+    background-color: var(--gray-800);
+    color: var(--gray-100);
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.custom-date-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--purple);
+    pointer-events: none;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--blue-dark);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: var(--blue);
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+
+    .submit-button {
+        padding: 12px 24px;
+        font-size: 18px;
+    }
+}

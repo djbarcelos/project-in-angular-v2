@@ -1,0 +1,10 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <header>
+      <span class="close-button" (click)="closeModal()">&times;</span>
+      <h2>{{ title }}</h2>
+    </header>
+    <app-employee-form [employee]="employee" (close)="closeModal()" (updateEmployeeList)="updateEmployeeList()"
+      (successNotification)="_successNotification()"></app-employee-form>
+  </div>
+</div>

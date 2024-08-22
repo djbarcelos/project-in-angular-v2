@@ -1,0 +1,72 @@
+.custom-select {
+    position: relative;
+}
+
+.select-box {
+    padding: 10px;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: var(--gray-700);
+    color: var(--gray-300);
+    border: 1px solid var(--gray-500);
+    border-radius: 4px;
+}
+
+.selected-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 90%;
+    vertical-align: middle;
+}
+
+.options-list {
+    position: absolute;
+    background: var(--gray-700);
+    border: 1px solid var(--gray-500);
+    border-radius: 4px;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.options-list label {
+    display: block;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.options-list input[type="checkbox"] {
+    margin-right: 0.85rem;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--blue);
+    border-radius: 50%;
+
+    cursor: pointer;
+    margin-right: 10px;
+    position: relative;
+}
+
+.options-list input[type="checkbox"]:checked {
+    background-color: var(--blue);
+}
+
+.options-list input[type="checkbox"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.options-list label:hover {
+    background-color: var(--purple-dark);
+}

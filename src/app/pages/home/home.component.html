@@ -1,13 +1,18 @@
 <main id="container">
-  <header>
-    <button class="add" (click)="handleAdd()">
-      <i class="fas fa-plus"></i> <span>Adicionar</span>
-    </button>
-    <!-- <app-employee-form *ngIf="isModalOpen" (close)="closeModal()"></app-employee-form> -->
-  </header>
+  <div>
+    <header>
+      <button class="add" (click)="openModal()">
+        <i class="fas fa-plus"></i> <span>Adicionar</span>
+      </button>
+      <app-modal *ngIf="isModalOpen" (close)="closeModal()" [title]="'Cadastrar Colaborador'"
+        (update)="updateEmployeeList()" (successNotification)="successNotification()"></app-modal>
+    </header>
 
-  <h1>Lista de colaboradores</h1>
+    <h1>Lista de colaboradores</h1>
 
-  <app-employees-list></app-employees-list>
+    <app-employees-list (close)="closeModal()" [employeeList]="employeeList" (update)="updateEmployeeList()"
+      (successNotification)="successNotification()"></app-employees-list>
 
+    <app-notification [message]="message" [type]="type" [visible]="notificationVisible"></app-notification>
+  </div>
 </main>
