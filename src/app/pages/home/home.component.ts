@@ -20,14 +20,23 @@ export class HomeComponent implements OnInit{
   message: string;
   notificationVisible: boolean;
 
+  years: number[] = [];
+  selectedYear: number | string | void;
+
   constructor() { 
     this.isModalOpen = false;
     this.employeeList = [];
-
+    this.selectedYear = null;
     this.notificationVisible = false;
   }
 
   ngOnInit() {
+
+    const currentYear = new Date().getFullYear();
+    for (let year = currentYear; year >= 1900; year--) {
+      this.years.push(year);
+    }
+
     this.updateEmployeeList();
   }
 
@@ -46,9 +55,19 @@ export class HomeComponent implements OnInit{
     setTimeout(() => this.notificationVisible = false, 3000);
   }
 
+  onChangeSelectYear() {
+    this.updateEmployeeList();
+  }
+
   async updateEmployeeList() {
+
+    let patch = 'http://localhost:8080/employees';
     
-    const response = await fetch('http://localhost:8080/employees', {
+    if(this.selectedYear !== null && this.selectedYear !== "all") {
+      patch += `?year=${this.selectedYear}`;
+    }
+    
+    const response = await fetch(patch, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

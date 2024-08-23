@@ -16,6 +16,32 @@ header {
     display: flex;
     justify-content: flex-end;
     margin-bottom: 20px;
+    flex-direction: row;
+}
+
+#selectYear {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    width: 10rem;
+    background: var(--gray-600);
+    border: 1px solid var(--gray-800);
+    border-radius: 4px;
+    color: var(--gray-300);
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+#selectYear:hover {
+    cursor: pointer;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--purple);
+}
+
+#selectContainer {
+    display: flex;
+    flex-direction: row;
 }
 
 button {

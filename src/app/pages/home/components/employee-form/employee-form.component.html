@@ -35,7 +35,7 @@
   <div class="form-group">
     <label>Líder</label>
     <select id="options" name="options" class="custom-select" [(ngModel)]="managerId">
-      <option value="null" disabled selected>Selecione uma opção</option>
+      <option value="null" selected>Selecione uma opção</option>
       <option *ngFor="let element of allEmployees" [value]="element.id">
         {{ element.name }}
       </option>

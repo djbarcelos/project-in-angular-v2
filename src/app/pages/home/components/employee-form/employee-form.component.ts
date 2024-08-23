@@ -38,7 +38,7 @@ export class EmployeeFormComponent implements OnInit {
   hireDate: string;
   workFunction: string;
   salary: string;
-  managerId;
+  managerId: string | null;
 
   allEmployees: Employee[];
   selectedItems: any[];
@@ -52,6 +52,7 @@ export class EmployeeFormComponent implements OnInit {
     this.notificationVisible = false;
     this.selectedItems = [];
     this.options = [];
+    this.managerId = null;
   }
 
   ngOnInit() {
@@ -59,15 +60,15 @@ export class EmployeeFormComponent implements OnInit {
     this.getEmployeeList();
 
     if(this.employee) {
-      const { name, cpf, hireDate, workFunction, salary, subordinates } = this.employee;
-
+      const { name, cpf, hireDate, workFunction, salary, managerId, subordinates } = this.employee;
+      
       this.id = this.employee?.id;
       this.name = name;
       this.cpf = cpf;
       this.hireDate = hireDate;
       this.workFunction = workFunction;
       this.salary = salary;
-      this.managerId = '';
+      this.managerId = managerId;
       this.selectedItems = [...subordinates.map(item => item.id)]
     }
   }
@@ -103,7 +104,7 @@ export class EmployeeFormComponent implements OnInit {
         hireDate: this.getFormattedDate,
         workFunction: this.workFunction,
         salary: this.parserSalary,
-        managerId: this.managerId,
+        managerId: this.managerId == "null" ? null : this.managerId,
         listManaged: this.selectedItems || []
       }
 
@@ -201,8 +202,12 @@ export class EmployeeFormComponent implements OnInit {
 
     result.sort((itemA: Employee, itemB: Employee) => itemA.name.localeCompare(itemB.name));
     
-    this.allEmployees = result.filter(item => this.id ? (this.id != item.id) : item);
-    this.options = result.filter(item => this.id ? (this.id != item.id) : item).map(item => {return {id: item.id, value: item.name }});
+    this.allEmployees = result
+    .filter(item => this.id || this.employee?.managerId ? (this.id != item.id ) && (this.id != this.employee?.managerId ) : item);
+
+    this.options = result
+    .filter(item => this.id ? (this.id != item.id ) : item)
+    .map(item => {return {id: item.id, value: item.name }});
     
   }
 }

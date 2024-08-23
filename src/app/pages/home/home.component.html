@@ -1,6 +1,15 @@
 <main id="container">
   <div>
     <header>
+
+      <div id="selectContainer">
+        <select id="selectYear" [(ngModel)]="selectedYear" name="selectYear" (change)="onChangeSelectYear()">
+          <option value="null" selected disabled> Filtrar por ano </option>
+          <option value="all"> Todos </option>
+          <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+        </select>
+      </div>
+
       <button class="add" (click)="openModal()">
         <i class="fas fa-plus"></i> <span>Adicionar</span>
       </button>
